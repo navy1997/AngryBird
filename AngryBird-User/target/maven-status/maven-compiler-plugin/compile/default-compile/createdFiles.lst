@@ -1,0 +1,3 @@
+com\birds\mapper\UserMapper.class
+com\birds\serivce\UserService.class
+com\birds\serivce\impl\UserServiceImpl.class

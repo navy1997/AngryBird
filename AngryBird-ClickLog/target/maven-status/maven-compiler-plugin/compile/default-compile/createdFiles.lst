@@ -1,0 +1,3 @@
+com\birds\mapper\ClickLogMapper.class
+com\birds\service\impl\ClickLogServiceImpl.class
+com\birds\service\ClickLogService.class

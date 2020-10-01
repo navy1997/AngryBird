@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="AngryBird-Customer-Web" />
+        <module name="AngryBird-Comment" />
+        <module name="AngryBird-ClickLog" />
+        <module name="AngryBird-Manager" />
+        <module name="AngryBird-User" />
+        <module name="AngryBird-Pojo" />
+        <module name="AngryBird-Backend-Web" />
+        <module name="AngryBird-Movie" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AngryBird-Backend-Web" options="-parameters" />
+      <module name="AngryBird-ClickLog" options="-parameters" />
+      <module name="AngryBird-Comment" options="-parameters" />
+      <module name="AngryBird-Customer-Web" options="-parameters" />
+      <module name="AngryBird-Manager" options="-parameters" />
+      <module name="AngryBird-Movie" options="-parameters" />
+      <module name="AngryBird-Pojo" options="-parameters" />
+      <module name="AngryBird-User" options="-parameters" />
+    </option>
+  </component>
+</project>

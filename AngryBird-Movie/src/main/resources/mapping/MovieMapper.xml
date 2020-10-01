@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.birds.mapper.MovieMapper">
+
+    <select id="findMovies" resultType="com.birds.pojo.Movie" parameterType="java.util.Map">
+        select *
+        from movie
+        where 1 = 1
+        <if test="title != null"> and title like '${title}'</if>
+        <if test="tag != null"> and tag = '${tag}' </if>
+        <if test="order != null and orderBy != null"> order by ${orderBy} ${order} </if>
+    </select>
+
+    <select id="findMovieCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(1)
+        from movie
+        <if test="query != null">where `title` like '${query}'</if>
+    </select>
+
+
+    <select id="findMoviesByTag" resultType="com.birds.pojo.Movie" parameterType="java.util.Map">
+        select *
+        from movie where tag = #{0}
+    </select>
+
+    <select id="getTags" resultType="com.birds.pojo.Tag" >
+        select tag from movie GROUP BY tag
+    </select>
+
+        <delete id="deleteMovieById" parameterType="java.lang.Integer">
+            delete from movie where id = #{0}
+        </delete>
+
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/AngryBird-Backend-Web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-ClickLog/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-Comment/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-Customer-Web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-Manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-Movie/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-Pojo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AngryBird-User/src/main/java" charset="UTF-8" />
+  </component>
+</project>

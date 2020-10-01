@@ -1,0 +1,3 @@
+com\birds\service\MovieService.class
+com\birds\mapper\MovieMapper.class
+com\birds\service\impl\MovieServiceImpl.class

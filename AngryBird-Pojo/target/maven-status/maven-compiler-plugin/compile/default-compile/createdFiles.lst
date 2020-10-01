@@ -1,0 +1,16 @@
+com\birds\pojo\ClickLog.class
+com\birds\rest\CodeMsg.class
+com\birds\pojo\Manager.class
+com\birds\pojo\CodeMsg.class
+com\birds\utils\PageRequest.class
+com\birds\pojo\Tag.class
+com\birds\utils\PageUtils.class
+com\birds\pojo\Movie.class
+com\birds\utils\JsonUtils.class
+com\birds\utils\PageResult.class
+com\birds\pojo\ManagerVo.class
+com\birds\rest\Result.class
+com\birds\pojo\Result.class
+com\birds\vo\ManagerVo.class
+com\birds\utils\MD5Utils.class
+com\birds\pojo\User.class
