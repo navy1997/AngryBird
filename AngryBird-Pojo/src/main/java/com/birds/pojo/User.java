@@ -12,11 +12,11 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-    private Integer isDelete;
+    private Integer isDelete = 1;
     private String phone;
     private String email;
-    private Long createAt;
-    private Long updateAt;
+    private Long createAt = System.currentTimeMillis();;
+    private Long updateAt = System.currentTimeMillis();;
     private Long loginTime;
     private String loginIp;
 }

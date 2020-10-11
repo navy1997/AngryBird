@@ -23,7 +23,10 @@ public class CodeMsg {
 
 	public static final CodeMsg DBERROR = new CodeMsg(400001, "服务繁忙，请稍后重试");
 
+	public static final CodeMsg FILE_ERROR = new CodeMsg(600001,"文件未找到");
 
+
+	public static final CodeMsg REUQESTTOMANY = new CodeMsg(700001,"请求太频繁啦，请60秒后再查询");
 	
 	public static final CodeMsg SERVER_ERROR = new CodeMsg(500100,"服务端异常");
 	

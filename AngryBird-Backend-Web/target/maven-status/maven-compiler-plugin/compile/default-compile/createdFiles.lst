@@ -1,5 +1,7 @@
-com\birds\controller\MovieController.class
+com\birds\interceptor\TokenInterceptor.class
+com\birds\configs\WebConfig.class
 com\birds\controller\ClickLogController.class
 com\birds\BirdsApplication.class
 com\birds\controller\ManagerController.class
+com\birds\controller\MovieController.class
 com\birds\controller\UserController.class
