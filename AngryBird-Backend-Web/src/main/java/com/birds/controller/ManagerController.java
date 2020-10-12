@@ -110,7 +110,7 @@ public class ManagerController {
         fund_ranking_data.add("BUY","true");
         fund_ranking_data.add("pageIndex","1");
         fund_ranking_data.add("SortColumn","GSZZL");
-        fund_ranking_data.add("pageSize","30");
+        fund_ranking_data.add("pageSize","1000");
         fund_ranking_data.add("MobileKey","61aa039c6a7877193c3f0fa901e31e24%7C%7Ciemi_tluafed_me");
         fund_ranking_data.add("plat","Android");
         fund_ranking_data.add("ISABNORMAL","true");
@@ -147,5 +147,76 @@ public class ManagerController {
 
         }
         return Result.success(null);
+    }
+
+    @GetMapping("/funds")
+    public Result getRankingFund(@RequestParam(defaultValue = "1") String pagenum,@RequestParam(defaultValue = "10") String pagesize){
+        HttpHeaders headers = new HttpHeaders();
+        MultiValueMap<String, String> fund_ranking_data= new LinkedMultiValueMap<>();
+        fund_ranking_data.add("appType","ttjj");
+        fund_ranking_data.add("Sort","desc");
+        fund_ranking_data.add("product","EFund");
+        fund_ranking_data.add("gToken","ceaf-215bf81ca205dbfb60840cd6867e4559");
+        fund_ranking_data.add("version","6.3.2");
+        fund_ranking_data.add("onFundCache","3");
+        fund_ranking_data.add("deviceid","61aa039c6a7877193c3f0fa901e31e24%7C%7Ciemi_tluafed_me");
+        fund_ranking_data.add("FundType","0");
+        fund_ranking_data.add("BUY","true");
+        fund_ranking_data.add("pageIndex",pagenum);
+        fund_ranking_data.add("SortColumn","GSZZL");
+        fund_ranking_data.add("pageSize",pagesize);
+        fund_ranking_data.add("MobileKey","61aa039c6a7877193c3f0fa901e31e24%7C%7Ciemi_tluafed_me");
+        fund_ranking_data.add("plat","Android");
+        fund_ranking_data.add("ISABNORMAL","true");
+        HttpEntity<MultiValueMap<String, String>> fundRankingDataRequestEntity = new HttpEntity<>(fund_ranking_data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("https://fundmobapi.eastmoney.com/FundMNewApi/FundMNValuationList", HttpMethod.POST, fundRankingDataRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String rankingData = response.getBody();
+        if(rankingData != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(rankingData);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+    @GetMapping("/get_funds")
+    public Result getFundsByIds(@RequestParam String ids){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> set_value_data= new LinkedMultiValueMap<>();
+        set_value_data.add("cccccccTokenErrorStop","true");
+        set_value_data.add("plat","Android");
+        set_value_data.add("appType","ttjj");
+        set_value_data.add("deviceid","61aa039c6a7877193c3f0fa901e31e24||iemi_tluafed_me");
+        set_value_data.add("product","EFund");
+        set_value_data.add("Version","6.3.2");
+        set_value_data.add("Fcodes",ids);
+        HttpEntity<MultiValueMap<String, String>> setValueRequestEntity = new HttpEntity<>(set_value_data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("https://fundmobapi.eastmoney.com/FundMNewApi/FundMNFInfo", HttpMethod.POST, setValueRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+
+        String body = response.getBody();
+        if(body != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(body);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+    @GetMapping("/get_top")
+    public Result getBigTop(){
+        //设置请求头
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        //  封装参数，千万不要替换为Map与HashMap，否则参数无法传递
+        MultiValueMap<String, String> index_data= new LinkedMultiValueMap<>();
+        //添加请求的参数
+        index_data.add("noooooLog", "true");
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(index_data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&secids=1.000001&fields=f2,f3,f14&ut=5c5bcf5bc6b33c18078e1dc9f70253d5", HttpMethod.POST, requestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String body = response.getBody();
+        if(body != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(body);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
     }
 }
