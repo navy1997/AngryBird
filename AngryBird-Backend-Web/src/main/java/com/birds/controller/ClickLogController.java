@@ -5,7 +5,11 @@ import com.birds.pojo.Result;
 import com.birds.service.ClickLogService;
 import com.birds.utils.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api/v1/clickLog")
@@ -14,6 +18,7 @@ public class ClickLogController {
 
     @Autowired
     private ClickLogService clickLogService;
+
 
     @GetMapping("/")
     public Result findClickLogs(@RequestParam(required = false) String query,@RequestParam(defaultValue = "1") Integer pagenum,@RequestParam(defaultValue = "2") Integer pagesize){
