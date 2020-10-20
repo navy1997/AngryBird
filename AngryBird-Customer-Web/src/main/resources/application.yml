@@ -54,7 +54,6 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
-
 config:
   jwt:
     # 加密密钥
@@ -65,7 +64,7 @@ config:
     header: Authorization
 
 redisConfig:
-  count: 10
+  count: 100
 
 #h缓存执行时间
 #cacheTime: 0 */1 * * * ?

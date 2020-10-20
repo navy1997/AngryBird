@@ -5,6 +5,7 @@ import com.birds.pojo.Manager;
 import com.birds.pojo.Result;
 import com.birds.service.ManagerService;
 import com.birds.utils.PageRequest;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSON;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -219,4 +222,92 @@ public class ManagerController {
         }
         return Result.error(null);
     }
+
+
+    @GetMapping("/querySimpleWeather")
+    public Result querySimpleWeather(@RequestParam String city){
+        HttpHeaders headers = new HttpHeaders();
+        MultiValueMap<String, String> data= new LinkedMultiValueMap<>();
+        data.add("city",city);
+        data.add("key","152d9a4681ce7a2e15757577d8aaf380");
+        HttpEntity<MultiValueMap<String, String>> fundRankingDataRequestEntity = new HttpEntity<>(data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("http://apis.juhe.cn/simpleWeather/query", HttpMethod.POST, fundRankingDataRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String rankingData = response.getBody();
+        if(rankingData != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(rankingData);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+    @GetMapping("/getTouTiaoNews")
+    public Result getTouTiaoNews(@RequestParam String type){
+        HttpHeaders headers = new HttpHeaders();
+        MultiValueMap<String, String> data= new LinkedMultiValueMap<>();
+        data.add("type",type);
+        data.add("key","9beddf9130edfdf193662b55787fc561");
+        HttpEntity<MultiValueMap<String, String>> fundRankingDataRequestEntity = new HttpEntity<>(data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("http://v.juhe.cn/toutiao/index", HttpMethod.POST, fundRankingDataRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String rankingData = response.getBody();
+        if(rankingData != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(rankingData);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+    @GetMapping("/getBrand")
+    public Result getBrand(@RequestParam String firstLetter){
+        HttpHeaders headers = new HttpHeaders();
+        MultiValueMap<String, String> data= new LinkedMultiValueMap<>();
+        data.add("first_letter",firstLetter);
+        data.add("key","294ed37379d3ee3987b90c474d25ed6e");
+        HttpEntity<MultiValueMap<String, String>> fundRankingDataRequestEntity = new HttpEntity<>(data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("http://apis.juhe.cn/cxdq/brand", HttpMethod.POST, fundRankingDataRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String rankingData = response.getBody();
+        if(rankingData != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(rankingData);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+    @GetMapping(value ="/today",produces = {"application/json;charset=UTF-8"})
+    public Result today(@RequestParam String month, @RequestParam String day) throws UnsupportedEncodingException {
+        HttpHeaders headers = new HttpHeaders();
+        MultiValueMap<String, String> data= new LinkedMultiValueMap<>();
+        data.add("v","1.0");
+        data.add("month",month);
+        data.add("day",day);
+        data.add("key","5083597720029cff924b6e1bd2991502");
+        HttpEntity<MultiValueMap<String, String>> fundRankingDataRequestEntity = new HttpEntity<>(data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("http://api.juheapi.com/japi/toh", HttpMethod.POST, fundRankingDataRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String rankingData =response.getBody();
+
+        if(rankingData != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(rankingData);
+            System.out.println(jsonObject);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+    @GetMapping("/youjia")
+    public Result getTodayYouJia() {
+        HttpHeaders headers = new HttpHeaders();
+        MultiValueMap<String, String> data= new LinkedMultiValueMap<>();
+        data.add("key","5e40b66f0f7c06c83a4b772585025c67");
+        HttpEntity<MultiValueMap<String, String>> fundRankingDataRequestEntity = new HttpEntity<>(data, headers);
+        ResponseEntity<String> response = restTemplate.exchange("http://apis.juhe.cn/gnyj/query", HttpMethod.POST, fundRankingDataRequestEntity, String.class);  //最后的参数需要用String.class  使用其他的会报错
+        String rankingData =response.getBody();
+        if(rankingData != null){
+            JSONObject jsonObject = (JSONObject) JSON.parse(rankingData);
+            System.out.println(jsonObject);
+            return Result.success(jsonObject);
+        }
+        return Result.error(null);
+    }
+
+
+
 }

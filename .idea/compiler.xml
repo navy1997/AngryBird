@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AngryBird-Backend-Web" />
+        <module name="AngryBird-Movie" />
         <module name="AngryBird-Pojo" />
         <module name="AngryBird-ClickLog" />
         <module name="AngryBird-Manager" />
         <module name="AngryBird-User" />
         <module name="AngryBird-Customer-Web" />
-        <module name="AngryBird-Movie" />
+        <module name="AngryBird-Backend-Web" />
         <module name="AngryBird-Comment" />
       </profile>
     </annotationProcessing>
