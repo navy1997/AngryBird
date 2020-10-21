@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.birds.mapper.ManagerAndRoleMapper">
+
+    <select id="findManagerRoleByManagerId" resultType="com.alibaba.fastjson.JSONObject" parameterType="java.lang.Integer">
+        select mr.id as 'id',mr.user_id as 'u_id',r.name as r_name,r.id as 'r_id' from manager_role mr join role r on  r.id = mr.role_id where mr.user_id = #{0}
+    </select>
+
+<!--    <select id="findManagerCount" resultType="java.lang.Integer" parameterType="java.util.Map">-->
+<!--        select count(1)-->
+<!--        from manager-->
+<!--        <if test="query != null">where `username` like '${query}'</if>-->
+
+<!--    </select>-->
+
+
+
+<!--    <delete id="deleteManagerById" parameterType="java.lang.Integer">-->
+<!--        delete from manager where id = #{0}-->
+<!--    </delete>-->
+
+
+<!--    <insert id="addManager" parameterType="com.birds.pojo.Manager" useGeneratedKeys="true" keyProperty="id">-->
+<!--        insert into manager(username,password,create_at,role_id,phone,email,is_delete)-->
+<!--        values(#{username},#{password},#{createAt},#{roleId},#{phone},#{email},#{isDelete})-->
+<!--    </insert>-->
+
+
+<!--    <update id="updateManager" parameterType="com.birds.pojo.Manager">-->
+<!--        update manager-->
+<!--        <trim prefix="set" suffixOverrides=",">-->
+<!--            <if test="username != null">`username`=#{username},</if>-->
+<!--            <if test="password != null">password=#{password},</if>-->
+<!--            <if test="isDelete != null">is_delete=#{isDelete},</if>-->
+<!--            <if test="phone != null">phone=#{phone},</if>-->
+<!--            <if test="email != null">email=#{email},</if>-->
+<!--            <if test="roleId != null">roleId=#{roleId},</if>-->
+<!--        </trim>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+
+</mapper>

@@ -3,6 +3,7 @@ package com.birds.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.birds.pojo.Manager;
 import com.birds.pojo.Result;
+import com.birds.service.ManagerAndRoleService;
 import com.birds.service.ManagerService;
 import com.birds.utils.PageRequest;
 import org.apache.http.HttpResponse;
@@ -27,6 +28,8 @@ public class ManagerController {
 
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private ManagerAndRoleService managerAndRoleService;
     @Autowired
     private RestTemplate restTemplate;
 
@@ -308,6 +311,17 @@ public class ManagerController {
         return Result.error(null);
     }
 
+
+    @GetMapping("/getRole/{id}")
+    public Result getRole(@PathVariable("id") Integer id){
+        return managerAndRoleService.findManagerRoleByManagerId(id);
+    }
+
+
+    @GetMapping("/getPermission/{id}")
+    public Result getPermission(@PathVariable("id") Integer id){
+        return managerAndRoleService.findPermissionByManagerId(id);
+    }
 
 
 }
