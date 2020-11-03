@@ -29,6 +29,9 @@ public class CodeMsg {
 	public static final CodeMsg REUQESTTOMANY = new CodeMsg(700001,"请求太频繁啦，请60秒后再查询");
 	
 	public static final CodeMsg SERVER_ERROR = new CodeMsg(500100,"服务端异常");
+
+
+
 	
 	//临期管理模块异常
 	public CodeMsg(int code, String msg)
